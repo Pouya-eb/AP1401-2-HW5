@@ -9,6 +9,7 @@ class Graph {
 public:
     Graph() = default;
     void addVertex(const T&);
+    void addEdge(const T&, const T&, int, std::function<bool(T, T)>);
 
 private:
     class Node {

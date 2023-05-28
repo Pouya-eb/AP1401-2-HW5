@@ -8,6 +8,30 @@ void Graph<T>::addVertex(const T& value)
     node->value = value;
     head.push_back(node);
 }
+template <typename T>
+void Graph<T>::addEdge(const T& v1, const T& v2, int a, std::function<bool(T, T)> func)
+{
+    Node* node1 { nullptr };
+    Node* node2 { nullptr };
+    for (auto node : head) {
+        if (func(node->value, v1))
+            node1 = node;
+        if (func(node->value, v2))
+            node2 = node;
+    }
+
+    Node* copy { new Node {} };
+    copy->value = node2->value;
+
+    Node* cuurent { node1 };
+
+    if (node1 && node2) {
+        while (current->next) {
+            current = current->next;
+        }
+        current->next = copy;
+    }
+}
 
 // Part2
 
