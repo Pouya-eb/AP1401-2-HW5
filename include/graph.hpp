@@ -9,14 +9,14 @@ void Graph<T>::addVertex(const T& value)
     head.push_back(node);
 }
 template <typename T>
-void Graph<T>::addEdge(const T& v1, const T& v2, int a, std::function<bool(T, T)> func)
+void Graph<T>::addEdge(const T& value1, const T& value2, int weight, std::function<bool(T, T)> func)
 {
     Node* node1 { nullptr };
     Node* node2 { nullptr };
     for (auto node : head) {
-        if (func(node->value, v1))
+        if (func(node->value, value1))
             node1 = node;
-        if (func(node->value, v2))
+        if (func(node->value, value2))
             node2 = node;
     }
 
@@ -34,8 +34,21 @@ void Graph<T>::addEdge(const T& v1, const T& v2, int a, std::function<bool(T, T)
             }
         }
         current->next = copy;
-        current->weight = a;
+        current->weight = weight;
     }
+}
+template <typename T>
+int Graph<T>::getNumEdges()
+{
+    int cnt {};
+    for (auto node : head) {
+        Node* current { node };
+        while (current->next) {
+            cnt++;
+            current = current->next;
+        }
+    }
+    return cnt;
 }
 
 // Part2
