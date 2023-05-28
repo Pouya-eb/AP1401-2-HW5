@@ -23,13 +23,18 @@ void Graph<T>::addEdge(const T& v1, const T& v2, int a, std::function<bool(T, T)
     Node* copy { new Node {} };
     copy->value = node2->value;
 
-    Node* cuurent { node1 };
+    Node* current { node1 };
 
     if (node1 && node2) {
         while (current->next) {
             current = current->next;
+            if (find(current->value, copy->value)) {
+                current->weight = copy->weight;
+                return;
+            }
         }
         current->next = copy;
+        current->weight = a;
     }
 }
 
