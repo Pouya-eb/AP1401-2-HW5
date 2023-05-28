@@ -1,9 +1,13 @@
 #include "graph.h"
 
 // Part1
-
-
-
+template <typename T>
+void Graph<T>::addVertex(const T& value)
+{
+    Node* node { new Node {} };
+    node->value = value;
+    head.push_back(node);
+}
 
 // Part2
 
@@ -21,7 +25,6 @@ Node* insert(Node* root, int value)
     return root;
 }
 // void deleteNode(Node* root, int value)
-
 
 Node* find(Node* root, int value)
 {
