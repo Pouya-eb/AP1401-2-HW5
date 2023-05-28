@@ -38,7 +38,7 @@ void Graph<T>::addEdge(const T& value1, const T& value2, int weight, std::functi
     }
 }
 template <typename T>
-int Graph<T>::getNumEdges()
+int Graph<T>::getNumEdges() const
 {
     int cnt {};
     for (auto node : head) {
@@ -49,6 +49,19 @@ int Graph<T>::getNumEdges()
         }
     }
     return cnt;
+}
+template <typename T>
+void Graph<T>::disp() const
+{
+    for (auto node : head) {
+        Node* current { node };
+        std::cout << "Vertex " << node->value << " -> ";
+        while (current->next) {
+            std::cout << current->value << " ";
+            current = current->next;
+        }
+        std::cout << std::endl;
+    }
 }
 
 // Part2
