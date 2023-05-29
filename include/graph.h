@@ -12,6 +12,7 @@ public:
     void addVertex(const T&);
     void addEdge(const T&, const T&, int, std::function<bool(T, T)>);
     int getNumEdges() const;
+    std::vector<T> getNeighbors(T, std::function<bool(T, T)>);
 
     void disp() const;
 
